@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ormapp',
     'ormapp2',
+    'ormapp3',
 ]
 
 MIDDLEWARE = [
