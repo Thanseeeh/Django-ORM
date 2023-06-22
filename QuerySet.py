@@ -72,3 +72,13 @@ Student.objects.bulk_create([
     Student(first_name = 'Tarak', last_name = 'Mehta', mobile = '9999', email = 'tarak@reddif.com'),
     Student(first_name = 'SuryaKumar', last_name = 'Yadav', mobile = '00000', email = 'yadav@reddif.com')
     ])
+
+#Aggregate methods
+#these methods help to perform operations such as counting, summing, averaging, finding minimum or maximum.
+from django.db.models import Avg, Count, Max, Min, Sum
+
+Student.objects.all().aggregate(Sum('id')) #sum
+Student.objects.all().aggregate(Avg('id')) #average
+Student.objects.all().aggregate(Count('id')) #count
+Student.objects.all().aggregate(Max('id')) #max
+Student.objects.all().aggregate(Min('id')) #min
