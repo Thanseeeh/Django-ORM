@@ -82,3 +82,14 @@ Student.objects.all().aggregate(Avg('id')) #average
 Student.objects.all().aggregate(Count('id')) #count
 Student.objects.all().aggregate(Max('id')) #max
 Student.objects.all().aggregate(Min('id')) #min
+
+#Annotation methods
+#Annotation of an object creates a separate summary for each object in a queryset. It is often used to obtain a summary of a particular object.
+annotated_student = Student.objects.annotate(post_count=Count('id'))
+annotated_student[1].post_count
+
+# Difference between Django's Annotate and Aggregate Methods :-
+
+# Annotate(), unlike aggregate(), is not a terminal clause. The annotate() clause returns a QuerySet. 
+# Annotations are inherently linked to individual queryset items. 
+# Aggregate result (summary) values across an entire QuerySet.
