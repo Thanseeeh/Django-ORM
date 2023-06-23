@@ -93,3 +93,10 @@ annotated_student[1].post_count
 # Annotate(), unlike aggregate(), is not a terminal clause. The annotate() clause returns a QuerySet. 
 # Annotations are inherently linked to individual queryset items. 
 # Aggregate result (summary) values across an entire QuerySet.
+
+#Django values_list
+#Django values_list() is an optimization to grab specific data from the database instead of building and loading the entire model instance.
+
+Student.objects.values_list('id', 'first_name')
+Student.objects.values_list('id', 'first_name').get(id=7)
+Student.objects.values_list('id', 'first_name').filter(username__contains = 'a')
