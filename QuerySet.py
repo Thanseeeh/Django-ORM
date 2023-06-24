@@ -100,3 +100,24 @@ annotated_student[1].post_count
 Student.objects.values_list('id', 'first_name')
 Student.objects.values_list('id', 'first_name').get(id=7)
 Student.objects.values_list('id', 'first_name').filter(username__contains = 'a')
+
+#Django managers
+#A Manager is the interface through which database query operations are provided to Django models.
+#At least one Manager exists for every model in a Django application.
+
+#Manager names:
+#By default, Django adds a Manager with the name objects to every Django model class. However, if you want to use objects as a field name, 
+# or if you want to use a name other than objects for the Manager, you can rename it on a per-model basis. 
+# To rename the Manager for a given class, define a class attribute of type models.Manager() on that model. For example:
+
+from django.db import models
+
+
+class Person(models.Model):
+    # ...
+    people = models.Manager()
+
+#Using this example model, Person.objects will generate an AttributeError exception, but Person.people.all() will provide a list of all Person objects.
+
+#Custom managers
+#You can use a custom Manager in a particular model by extending the base Manager class and instantiating your custom Manager in your model.
