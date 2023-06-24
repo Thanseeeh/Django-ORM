@@ -121,3 +121,45 @@ class Person(models.Model):
 
 #Custom managers
 #You can use a custom Manager in a particular model by extending the base Manager class and instantiating your custom Manager in your model.
+
+# First, define the Manager subclass.
+class DahlBookManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(author="Roald Dahl")
+
+
+# Then hook it into the Book model explicitly.
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=50)
+
+    objects = models.Manager()  # The default manager.
+    dahl_objects = DahlBookManager()  # The Dahl-specific manager.
+
+#With this sample model, Book.objects.all() will return all books in the database, but Book.dahl_objects.
+# all() will only return the ones written by Roald Dahl.
+
+#Raw Method
+#the raw() method allows you to execute raw SQL queries directly against your database. it provides a way to perform database
+#operations that may not be easily achievable or optimized using the ORM's high-level query APIs
+from django.db import connection
+
+query = "SELECT id, username FROM myapp_student"
+raw_queryset = Student.objects.raw(query)
+
+for student in raw_queryset:
+    print(student.username)
+
+#Cursor Method
+#In Django, the cursor() method allows you to directly access the database cursor associated with a database connection. 
+#The cursor provides a low-level interface to execute raw SQL queries and fetch results from the database.
+from django.db import connection
+
+cursor = connection.cursor()
+cursor.execute("SELECT * FROM myapp_student")
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+
