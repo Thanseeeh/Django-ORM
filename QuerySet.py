@@ -163,3 +163,17 @@ rows = cursor.fetchall()
 for row in rows:
     print(row)
 
+#Bulk Create method
+#In Django ORM, the bulk_create() method allows you to efficiently create multiple model objects in a single database query. 
+#It is a performance optimization technique that can significantly reduce the overhead of individual database queries when you need to create a 
+#large number of objects.
+
+from myapp.models import Teacher, Student
+
+Student.objects.bulk_create([
+    Student(username = 'hamdan03', first_name = 'hamdan', last_name = 'swalih', mobile = '9988341287', email = 'hamdan@gmail.com'), 
+    Student(username = 'ridhinbro', first_name = 'ridin', last_name = 'k', mobile = '9847924232', email = 'ridin@gmail.com')])
+
+#Exclude method
+queryset = Student.objects.exclude(username__startswith = 'a')
+print(queryset)
