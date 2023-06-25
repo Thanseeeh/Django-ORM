@@ -177,3 +177,9 @@ Student.objects.bulk_create([
 #Exclude method
 queryset = Student.objects.exclude(username__startswith = 'a')
 print(queryset)
+
+#Contians method
+#The contains lookup checks if a field value contains a specific substring. It performs a case-sensitive match.
+
+query = Student.objects.filter(field__contains='substring')
+print(query)
