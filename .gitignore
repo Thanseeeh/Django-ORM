@@ -1,0 +1,26 @@
+# Virtual environment
+environment/
+
+# Secret keys and sensitive information
+*.pyc
+*.env
+*.sqlite3
+
+# Static files and media uploads
+/static/
+/media/
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Logs and temporary files
+*.log
+*.swp
+.DS_Store
+
+# IDE-specific files
+.vscode/
+.idea/
